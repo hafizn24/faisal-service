@@ -4,8 +4,12 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   // Only allow requests from your domain
   const origin = request.headers.get('origin');
-  const allowedOrigins = [process.env.NEXT_PUBLIC_SITE_URL];
+  const allowedOrigins = [
+    'https://faisal-service.netlify.app',
+    process.env.NEXT_PUBLIC_SITE_URL
+  ].filter(Boolean); // Remove undefined values
   
+  // Allow same-origin requests (when origin is null)
   if (origin && !allowedOrigins.includes(origin)) {
     return NextResponse.json(
       { error: 'Forbidden' },
