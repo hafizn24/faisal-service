@@ -1,6 +1,8 @@
 import { useState } from "react";
 import UserDetails from "./_components/UserDetails";
 import AppointmentDetails from "./_components/AppointmentDetails";
+import VehicleDetails from "./_components/VehicleDetails";
+import Stepper from "./Stepper";
 
 interface FormData {
   name: string;
@@ -87,17 +89,32 @@ export default function Form() {
       </h3>
 
       <div className="max-w-lg mx-auto bg-white shadow rounded-lg p-8">
-        {step === 1 ? (
+        {/* Stepper at the top */}
+        <Stepper step={step} />
+
+        {/* Step Content */}
+        {step === 1 && (
           <UserDetails
             formData={formData}
             updateField={updateField}
             onNext={() => setStep(2)}
           />
-        ) : (
+        )}
+
+        {step === 2 && (
+          <VehicleDetails
+            formData={formData}
+            updateField={updateField}
+            onNext={() => setStep(3)}
+            onBack={() => setStep(1)}
+          />
+        )}
+
+        {step === 3 && (
           <AppointmentDetails
             formData={formData}
             updateField={updateField}
-            onBack={() => setStep(1)}
+            onBack={() => setStep(2)}
             onSubmit={handleSubmit}
             isLoading={isLoading}
             error={error}

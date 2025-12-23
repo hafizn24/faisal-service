@@ -6,7 +6,7 @@ interface FormData {
     numberPlate: string;
     brandModel: string;
     productPackage: string;
-    timeslot: string; // will hold ISO date-time string
+    timeslot: string;
     receipt: File | null;
 }
 
@@ -29,30 +29,48 @@ function AppointmentDetails({
 }: AppointmentDetailsProps) {
     return (
         <div className="space-y-6">
-            <input
-                type="date"
-                value={formData.timeslot}
-                onChange={(e) => updateField("timeslot", e.target.value)}
-                required
-                className="w-full border rounded-lg px-4 py-2"
-            />
+            {/* Timeslot field */}
+            <div>
+                <label
+                    htmlFor="timeslot"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                    Select Timeslot
+                </label>
+                <input
+                    id="timeslot"
+                    type="date"
+                    value={formData.timeslot}
+                    onChange={(e) => updateField("timeslot", e.target.value)}
+                    required
+                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
+                />
+            </div>
 
-            <div className="border rounded-lg p-4 bg-gray-50">
+            {/* Payment QR Code */}
+            <div className="border border-gray-400 rounded-lg p-4 bg-gray-50">
                 <p className="text-sm text-gray-600 mb-2">Payment QR Code</p>
                 <div className="w-48 h-48 bg-gray-200 mx-auto flex items-center justify-center">
                     QR Image Placeholder
                 </div>
             </div>
 
+            {/* Upload Receipt */}
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                    htmlFor="receipt"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                >
                     Upload Payment Receipt
                 </label>
                 <input
+                    id="receipt"
                     type="file"
                     accept="image/*,.pdf"
-                    onChange={(e) => updateField("receipt", e.target.files?.[0] || null)}
-                    className="w-full border rounded-lg px-4 py-2"
+                    onChange={(e) =>
+                        updateField("receipt", e.target.files?.[0] || null)
+                    }
+                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
                 />
                 {formData.receipt && (
                     <p className="text-sm text-gray-600 mt-2">
@@ -61,8 +79,10 @@ function AppointmentDetails({
                 )}
             </div>
 
+            {/* Error message */}
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
+            {/* Buttons */}
             <div className="flex justify-between gap-4">
                 <button
                     type="button"

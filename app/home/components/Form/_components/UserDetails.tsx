@@ -19,74 +19,88 @@ interface UserDetailsProps {
 function UserDetails({ formData, updateField, onNext }: UserDetailsProps) {
     return (
         <div className="space-y-6">
-            <input
-                type="text"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={(e) => updateField("name", e.target.value)}
-                required
-                className="w-full border rounded-lg px-4 py-2"
-            />
-            <input
-                type="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={(e) => updateField("email", e.target.value)}
-                required
-                className="w-full border rounded-lg px-4 py-2"
-            />
-            <input
-                type="tel"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={(e) => updateField("phone", e.target.value)}
-                required
-                className="w-full border rounded-lg px-4 py-2"
-            />
-            <input
-                type="text"
-                placeholder="Hostel's Name"
-                value={formData.hostel}
-                onChange={(e) => updateField("hostel", e.target.value)}
-                required
-                className="w-full border rounded-lg px-4 py-2"
-            />
-            <input
-                type="text"
-                placeholder="Number Plate Vehicle"
-                value={formData.numberPlate}
-                onChange={(e) => updateField("numberPlate", e.target.value)}
-                required
-                className="w-full border rounded-lg px-4 py-2"
-            />
-            <input
-                type="text"
-                placeholder="Brand Model"
-                value={formData.brandModel}
-                onChange={(e) => updateField("brandModel", e.target.value)}
-                required
-                className="w-full border rounded-lg px-4 py-2"
-            />
-            <select
-                value={formData.productPackage}
-                onChange={(e) => updateField("productPackage", e.target.value)}
-                required
-                className="w-full border rounded-lg px-4 py-2"
-            >
-                <option value="" disabled>
-                    Select Product and Package
-                </option>
-                <option value="daily">Daily Use Package</option>
-                <option value="performance">Performance Package</option>
-            </select>
+            {/* Name field */}
+            <div>
+                <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                    Your Name
+                </label>
+                <input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => updateField("name", e.target.value)}
+                    required
+                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
+                />
+            </div>
 
-            <button
-                type="button"
-                onClick={onNext}
-                className="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500 transition"
-            >
-                Next
-            </button>
+            {/* Email field */}
+            <div>
+                <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                    Your Email
+                </label>
+                <input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => updateField("email", e.target.value)}
+                    required
+                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
+                />
+            </div>
+
+            {/* Phone field */}
+            <div>
+                <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                    Phone Number
+                </label>
+                <input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => updateField("phone", e.target.value)}
+                    required
+                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
+                />
+            </div>
+
+            {/* Hostel field */}
+            <div>
+                <label
+                    htmlFor="hostel"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                    Hostel's Name
+                </label>
+                <input
+                    id="hostel"
+                    type="text"
+                    value={formData.hostel}
+                    onChange={(e) => updateField("hostel", e.target.value)}
+                    required
+                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
+                />
+            </div>
+
+            {/* Next button */}
+            <div className="flex justify-end">
+                <button
+                    type="button"
+                    onClick={onNext}
+                    className="bg-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition"
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 }
