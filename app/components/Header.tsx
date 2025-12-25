@@ -1,8 +1,3 @@
-"use client";
-
-import React from "react";
-import { cn } from "@/lib/utils";
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
 
 export default function Header() {
   return (

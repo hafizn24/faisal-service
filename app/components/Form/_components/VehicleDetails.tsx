@@ -9,44 +9,26 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select';
-
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  hostel: string;
-  numberPlate: string;
-  brandModel: string;
-  productPackage: string;
-  timeslot: string;
-  receipt: File | null;
-}
-
-interface VehicleDetailsProps {
-  formData: FormData;
-  updateField: (field: keyof FormData, value: string) => void;
-  onNext: () => void;
-  onBack: () => void;
-}
+import { VehicleDetailsProps } from '@/app/types';
 
 function VehicleDetails({ formData, updateField, onNext, onBack }: VehicleDetailsProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    
+
     if (!formData.numberPlate.trim()) {
       newErrors.numberPlate = 'Number plate is required';
     }
-    
+
     if (!formData.brandModel.trim()) {
       newErrors.brandModel = 'Brand model is required';
     }
-    
+
     if (!formData.productPackage) {
       newErrors.productPackage = 'Please select a package';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -66,7 +48,7 @@ function VehicleDetails({ formData, updateField, onNext, onBack }: VehicleDetail
           type="text"
           value={formData.numberPlate}
           onChange={(e) => updateField('numberPlate', e.target.value)}
-          className={errors.numberPlate ? 'border-red-500' : ''}
+          className={errors.numberPlate ? 'border-red-500' : 'border border-gray-300'}
         />
         {errors.numberPlate && <p className="text-sm text-red-500">{errors.numberPlate}</p>}
       </div>
@@ -78,7 +60,7 @@ function VehicleDetails({ formData, updateField, onNext, onBack }: VehicleDetail
           type="text"
           value={formData.brandModel}
           onChange={(e) => updateField('brandModel', e.target.value)}
-          className={errors.brandModel ? 'border-red-500' : ''}
+          className={errors.brandModel ? 'border-red-500' : 'border border-gray-300'}
         />
         {errors.brandModel && <p className="text-sm text-red-500">{errors.brandModel}</p>}
       </div>
@@ -87,21 +69,38 @@ function VehicleDetails({ formData, updateField, onNext, onBack }: VehicleDetail
         <Label htmlFor="productPackage">Select Product and Package</Label>
         <Select
           value={formData.productPackage}
-          onValueChange={(val) => updateField('productPackage', val)}
+          onValueChange={(val) => updateField("productPackage", val)}
         >
-          <SelectTrigger className={errors.productPackage ? 'border-red-500' : ''}>
+          <SelectTrigger
+            className={
+              errors.productPackage ? "border-red-500" : "border border-gray-300"
+            }
+          >
             <SelectValue placeholder="Select Product and Package" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="daily">Daily Use Package</SelectItem>
-            <SelectItem value="performance">Performance Package</SelectItem>
+          <SelectContent className="bg-white text-gray-900 border border-gray-200 shadow-md">
+            <SelectItem
+              value="daily"
+              className="cursor-pointer hover:bg-gray-100 text-gray-900"
+            >
+              Daily Use Package
+            </SelectItem>
+            <SelectItem
+              value="performance"
+              className="cursor-pointer hover:bg-gray-100 text-gray-900"
+            >
+              Performance Package
+            </SelectItem>
           </SelectContent>
         </Select>
-        {errors.productPackage && <p className="text-sm text-red-500">{errors.productPackage}</p>}
+        {errors.productPackage && (
+          <p className="text-sm text-red-500">{errors.productPackage}</p>
+        )}
       </div>
 
+
       <div className="flex justify-between gap-4">
-        <Button variant="outline" type="button" onClick={onBack}>
+        <Button type="button" onClick={onBack} className="bg-yellow-400 text-black hover:bg-yellow-500">
           Back
         </Button>
         <Button

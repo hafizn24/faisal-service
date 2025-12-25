@@ -4,27 +4,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  hostel: string;
-  numberPlate: string;
-  brandModel: string;
-  productPackage: string;
-  timeslot: string;
-  receipt: File | null;
-}
-
-interface AppointmentDetailsProps {
-  formData: FormData;
-  updateField: (field: keyof FormData, value: string | File | null) => void;
-  onBack: () => void;
-  onSubmit: () => void;
-  isLoading: boolean;
-  error: string;
-}
+import { AppointmentDetailsProps } from '@/app/types';
 
 function AppointmentDetails({
   formData,
@@ -83,7 +63,7 @@ function AppointmentDetails({
           value={formData.timeslot}
           onChange={(e) => updateField('timeslot', e.target.value)}
           min={new Date().toISOString().split('T')[0]}
-          className={errors.timeslot ? 'border-red-500' : ''}
+          className={errors.timeslot ? 'border-red-500' : 'border border-gray-300'}
         />
         {errors.timeslot && <p className="text-sm text-red-500">{errors.timeslot}</p>}
       </div>
@@ -110,7 +90,7 @@ function AppointmentDetails({
           type="file"
           accept="image/*,.pdf"
           onChange={handleFileChange}
-          className={errors.receipt ? 'border-red-500' : ''}
+          className={errors.receipt ? 'border-red-500' : 'border border-gray-300'}
         />
         {formData.receipt && (
           <p className="text-sm text-green-600 mt-2 flex items-center gap-2">
@@ -130,7 +110,7 @@ function AppointmentDetails({
       )}
 
       <div className="flex justify-between gap-4">
-        <Button variant="outline" type="button" onClick={onBack} disabled={isLoading}>
+        <Button type="button" onClick={onBack} disabled={isLoading} className="bg-yellow-400 text-black hover:bg-yellow-500">
           Back
         </Button>
         <Button

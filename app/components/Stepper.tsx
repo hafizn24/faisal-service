@@ -1,6 +1,5 @@
-"use client";
 
-import { cn } from "@/lib/utils"; // shadcn helper for conditional classes
+import { cn } from "@/lib/utils"; // shadcn helper
 import { Badge } from "@/components/ui/badge";
 
 interface StepperProps {
@@ -11,17 +10,20 @@ const steps = ["User Details", "Vehicle Details", "Appointment"];
 
 export default function Stepper({ step }: StepperProps) {
   return (
-    <div className="flex items-center justify-between mb-8">
+    <div className="flex items-center justify-between mb-6 gap-2 sm:gap-4">
       {steps.map((label, index) => {
         const isActive = step === index + 1;
         const isCompleted = step > index + 1;
 
         return (
-          <div key={label} className="flex-1 flex flex-col items-center">
+          <div
+            key={label}
+            className="flex-1 flex flex-col items-center min-w-0"
+          >
             {/* Circle using Badge */}
             <Badge
               className={cn(
-                "w-10 h-10 flex items-center justify-center rounded-full border-2 text-base",
+                "w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border-2 text-xs sm:text-base shrink-0",
                 isActive && "bg-yellow-400 border-yellow-400 text-black",
                 isCompleted && "bg-green-500 border-green-500 text-white",
                 !isActive && !isCompleted && "border-gray-300 text-gray-500"
@@ -33,7 +35,7 @@ export default function Stepper({ step }: StepperProps) {
             {/* Label */}
             <p
               className={cn(
-                "mt-2 text-sm font-medium",
+                "mt-1 sm:mt-2 text-[10px] sm:text-sm font-medium text-center truncate",
                 isActive ? "text-yellow-500" : "text-gray-600"
               )}
             >

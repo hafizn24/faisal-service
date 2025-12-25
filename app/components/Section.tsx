@@ -1,6 +1,3 @@
-"use client";
-
-import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -32,7 +29,7 @@ function Section() {
       <section id="services" className="py-16 container mx-auto px-6">
         <h3 className="text-3xl font-bold text-center mb-12">Our Services</h3>
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="text-center">
+          <Card className='text-center border border-gray-300'>
             <CardHeader>
               <CardTitle>🛠️ General Maintenance</CardTitle>
             </CardHeader>
@@ -43,7 +40,7 @@ function Section() {
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card className='text-center border border-gray-300'>
             <CardHeader>
               <CardTitle>⚡ Engine Diagnostics</CardTitle>
             </CardHeader>
@@ -54,7 +51,7 @@ function Section() {
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card className='text-center border border-gray-300'>
             <CardHeader>
               <CardTitle>🛡️ Custom Upgrades</CardTitle>
             </CardHeader>

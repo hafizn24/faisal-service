@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState } from "react";
 import UserDetails from "./_components/UserDetails";
@@ -12,22 +12,12 @@ import {
   CardTitle,
   CardContent,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  hostel: string;
-  numberPlate: string;
-  brandModel: string;
-  productPackage: string;
-  timeslot: string;
-  receipt: File | null;
-}
+import { FormData as BookingFormData } from '@/app/types';
+import { toast } from "sonner";
 
-const INITIAL_FORM_DATA: FormData = {
+const INITIAL_FORM_DATA: BookingFormData = {
   name: "",
   email: "",
   phone: "",
@@ -41,11 +31,11 @@ const INITIAL_FORM_DATA: FormData = {
 
 export default function UserForm() {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
+  const [formData, setFormData] = useState<BookingFormData>(INITIAL_FORM_DATA);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const updateField = (field: keyof FormData, value: string | File | null) => {
+  const updateField = (field: keyof BookingFormData, value: string | File | null) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -55,11 +45,30 @@ export default function UserForm() {
     setError("");
   };
 
+  // Helper function to convert file to base64
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
   const handleSubmit = async () => {
     setError("");
     setIsLoading(true);
 
     try {
+      // APPROACH 1: Using JSON with base64 encoded file
+      let receiptBase64 = null;
+      if (formData.receipt) {
+        receiptBase64 = await fileToBase64(formData.receipt);
+      }
+
+      console.log('payload', formData)
+      console.log('receipt', receiptBase64)
+
       const payload = {
         name: formData.name,
         email: formData.email,
@@ -69,12 +78,56 @@ export default function UserForm() {
         brandModel: formData.brandModel,
         productPackage: formData.productPackage,
         timeslot: formData.timeslot,
+        receipt: receiptBase64, // Base64 string
+        receiptName: formData.receipt?.name,
+        receiptType: formData.receipt?.type,
       };
 
       const response = await fetch("/api/webhook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast("Request submitted successfully!.")
+        resetForm();
+      } else {
+        setError(result.error || "Failed to submit request. Please try again.");
+      }
+    } catch (err) {
+      console.error("Request failed:", err);
+      setError("An error occurred. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // APPROACH 2: Using FormData (alternative)
+  const handleSubmitWithFormData = async () => {
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("hostel", formData.hostel);
+      formDataToSend.append("numberPlate", formData.numberPlate);
+      formDataToSend.append("brandModel", formData.brandModel);
+      formDataToSend.append("productPackage", formData.productPackage);
+      formDataToSend.append("timeslot", formData.timeslot);
+      
+      if (formData.receipt) {
+        formDataToSend.append("receipt", formData.receipt);
+      }
+
+      const response = await fetch("/api/webhook", {
+        method: "POST",
+        body: formDataToSend, // Don't set Content-Type header, browser will set it automatically
       });
 
       const result = await response.json();
@@ -99,7 +152,7 @@ export default function UserForm() {
         Book Your Service
       </h3>
 
-      <Card className="max-w-lg mx-auto">
+      <Card className="max-w-lg mx-auto border border-gray-300">
         <CardHeader>
           <CardTitle className="text-center">Service Booking</CardTitle>
         </CardHeader>
@@ -137,22 +190,11 @@ export default function UserForm() {
               formData={formData}
               updateField={updateField}
               onBack={() => setStep(2)}
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit} // Use handleSubmitWithFormData for FormData approach
               isLoading={isLoading}
               error={error}
             />
           )}
-
-          {/* Reset button */}
-          <div className="mt-6 flex justify-center">
-            <Button
-              variant="outline"
-              onClick={resetForm}
-              disabled={isLoading}
-            >
-              Reset Form
-            </Button>
-          </div>
         </CardContent>
       </Card>
     </section>

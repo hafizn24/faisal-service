@@ -2,24 +2,7 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  hostel: string;
-  numberPlate: string;
-  brandModel: string;
-  productPackage: string;
-  timeslot: string;
-  receipt: File | null;
-}
-
-interface UserDetailsProps {
-  formData: FormData;
-  updateField: (field: keyof FormData, value: string) => void;
-  onNext: () => void;
-}
+import { UserDetailsProps } from '@/app/types';
 
 function UserDetails({ formData, updateField, onNext }: UserDetailsProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -64,7 +47,7 @@ function UserDetails({ formData, updateField, onNext }: UserDetailsProps) {
           type="text"
           value={formData.name}
           onChange={(e) => updateField('name', e.target.value)}
-          className={errors.name ? 'border-red-500' : ''}
+          className={errors.name ? 'border-red-500' : 'border border-gray-300'}
         />
         {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
       </div>
@@ -76,7 +59,7 @@ function UserDetails({ formData, updateField, onNext }: UserDetailsProps) {
           type="email"
           value={formData.email}
           onChange={(e) => updateField('email', e.target.value)}
-          className={errors.email ? 'border-red-500' : ''}
+          className={errors.email ? 'border-red-500' : 'border border-gray-300'}
         />
         {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
       </div>
@@ -88,7 +71,7 @@ function UserDetails({ formData, updateField, onNext }: UserDetailsProps) {
           type="tel"
           value={formData.phone}
           onChange={(e) => updateField('phone', e.target.value)}
-          className={errors.phone ? 'border-red-500' : ''}
+          className={errors.phone ? 'border-red-500' : 'border border-gray-300'}
         />
         {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
       </div>
@@ -100,7 +83,7 @@ function UserDetails({ formData, updateField, onNext }: UserDetailsProps) {
           type="text"
           value={formData.hostel}
           onChange={(e) => updateField('hostel', e.target.value)}
-          className={errors.hostel ? 'border-red-500' : ''}
+          className={errors.hostel ? 'border-red-500' : 'border border-gray-300'}
         />
         {errors.hostel && <p className="text-sm text-red-500">{errors.hostel}</p>}
       </div>
