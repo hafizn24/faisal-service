@@ -32,7 +32,8 @@ export default function RegisterPage() {
     setLoading(true);
     setError(null);
 
-    const { error } = await supabase.auth.signUp({
+    // Step 1: Sign up with Supabase Auth
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -41,11 +42,32 @@ export default function RegisterPage() {
 
     if (error) {
       setError(error.message);
-    } else {
-      // Supabase will send a verification email if required
-      router.push("/admin");
-      router.refresh();
+      return;
     }
+
+    // Step 2: Insert into your custom table
+    const user = data.user;
+
+    if (user) {
+      const { error: insertError } = await supabase
+        .from("service_users")
+        .insert([
+          {
+            su_id: user.id,
+            su_email: user.email,
+            su_is_approve: false,
+          },
+        ]);
+
+      if (insertError) {
+        setError(insertError.message);
+        return;
+      }
+    }
+
+    // Step 3: Redirect after success
+    router.push("/login");
+    router.refresh();
   }
 
   return (

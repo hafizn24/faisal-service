@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -31,6 +32,24 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+
+    const { data, error: su_error } = await supabase
+      .from("service_users")
+      .select("su_is_approve")
+      .eq("su_email", email)
+      .single();
+
+    if (su_error) {
+      setError(su_error.message);
+      setLoading(false);
+      return;
+    }
+
+    if (!data?.su_is_approve) {
+      toast.error("Account not approved yet. Please contact administrator");
+      setLoading(false);
+      return;
+    }
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
