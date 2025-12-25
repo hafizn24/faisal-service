@@ -92,7 +92,7 @@ export default function UserForm() {
       const result = await response.json();
 
       if (response.ok) {
-        toast("Request submitted successfully!.")
+        toast.success("Request submitted successfully!.")
         resetForm();
       } else {
         setError(result.error || "Failed to submit request. Please try again.");
