@@ -9,7 +9,7 @@ export default function Layout({ children }: LayoutProps) {
     return (
         <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
             {/* Main content */}
-            <main className="flex-grow">{children}</main>
+            <main className="grow">{children}</main>
 
             {/* Footer */}
             <Footer />

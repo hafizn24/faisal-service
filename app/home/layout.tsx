@@ -13,7 +13,7 @@ export default function Layout({ children }: LayoutProps) {
             <Header />
 
             {/* Main content */}
-            <main className="flex-grow">{children}</main>
+            <main className="grow">{children}</main>
 
             {/* Footer */}
             <Footer />

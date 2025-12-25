@@ -1,13 +1,13 @@
 'use client'
 import React from 'react'
 import Section from '../components/Section'
-import Form from '../components/Form/UserForm'
+import FormUser from '../components/Form/UserForm'
 
 export default function page() {
   return (
     <div>
         <Section/>
-        <Form />
+        <FormUser />
     </div>
   )
 }

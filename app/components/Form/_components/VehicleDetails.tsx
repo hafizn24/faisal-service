@@ -1,103 +1,119 @@
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
+
 interface FormData {
-    name: string;
-    email: string;
-    phone: string;
-    hostel: string;
-    numberPlate: string;
-    brandModel: string;
-    productPackage: string;
-    timeslot: string;
-    receipt: File | null;
+  name: string;
+  email: string;
+  phone: string;
+  hostel: string;
+  numberPlate: string;
+  brandModel: string;
+  productPackage: string;
+  timeslot: string;
+  receipt: File | null;
 }
 
 interface VehicleDetailsProps {
-    formData: FormData;
-    updateField: (field: keyof FormData, value: string) => void;
-    onNext: () => void;
-    onBack: () => void;
+  formData: FormData;
+  updateField: (field: keyof FormData, value: string) => void;
+  onNext: () => void;
+  onBack: () => void;
 }
 
 function VehicleDetails({ formData, updateField, onNext, onBack }: VehicleDetailsProps) {
-    return (
-        <div className="space-y-6">
-            {/* Number Plate field */}
-            <div>
-                <label
-                    htmlFor="numberPlate"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                    Number Plate Vehicle
-                </label>
-                <input
-                    id="numberPlate"
-                    type="text"
-                    value={formData.numberPlate}
-                    onChange={(e) => updateField("numberPlate", e.target.value)}
-                    required
-                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
-                />
-            </div>
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-            {/* Brand Model field */}
-            <div>
-                <label
-                    htmlFor="brandModel"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                    Brand Model
-                </label>
-                <input
-                    id="brandModel"
-                    type="text"
-                    value={formData.brandModel}
-                    onChange={(e) => updateField("brandModel", e.target.value)}
-                    required
-                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
-                />
-            </div>
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.numberPlate.trim()) {
+      newErrors.numberPlate = 'Number plate is required';
+    }
+    
+    if (!formData.brandModel.trim()) {
+      newErrors.brandModel = 'Brand model is required';
+    }
+    
+    if (!formData.productPackage) {
+      newErrors.productPackage = 'Please select a package';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
-            {/* Product Package field */}
-            <div>
-                <label
-                    htmlFor="productPackage"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                    Select Product and Package
-                </label>
-                <select
-                    id="productPackage"
-                    value={formData.productPackage}
-                    onChange={(e) => updateField("productPackage", e.target.value)}
-                    required
-                    className="w-full border border-gray-400 rounded-lg px-4 py-2"
-                >
-                    <option value="" disabled>
-                        Select Product and Package
-                    </option>
-                    <option value="daily">Daily Use Package</option>
-                    <option value="performance">Performance Package</option>
-                </select>
-            </div>
+  const handleNext = () => {
+    if (validate()) {
+      onNext();
+    }
+  };
 
-            {/* Buttons */}
-            <div className="flex justify-between gap-4">
-                <button
-                    type="button"
-                    onClick={onBack}
-                    className="bg-gray-300 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-400 transition"
-                >
-                    Back
-                </button>
-                <button
-                    type="button"
-                    onClick={onNext}
-                    className="bg-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition"
-                >
-                    Next
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <Label htmlFor="numberPlate">Number Plate Vehicle</Label>
+        <Input
+          id="numberPlate"
+          type="text"
+          value={formData.numberPlate}
+          onChange={(e) => updateField('numberPlate', e.target.value)}
+          className={errors.numberPlate ? 'border-red-500' : ''}
+        />
+        {errors.numberPlate && <p className="text-sm text-red-500">{errors.numberPlate}</p>}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="brandModel">Brand Model</Label>
+        <Input
+          id="brandModel"
+          type="text"
+          value={formData.brandModel}
+          onChange={(e) => updateField('brandModel', e.target.value)}
+          className={errors.brandModel ? 'border-red-500' : ''}
+        />
+        {errors.brandModel && <p className="text-sm text-red-500">{errors.brandModel}</p>}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="productPackage">Select Product and Package</Label>
+        <Select
+          value={formData.productPackage}
+          onValueChange={(val) => updateField('productPackage', val)}
+        >
+          <SelectTrigger className={errors.productPackage ? 'border-red-500' : ''}>
+            <SelectValue placeholder="Select Product and Package" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="daily">Daily Use Package</SelectItem>
+            <SelectItem value="performance">Performance Package</SelectItem>
+          </SelectContent>
+        </Select>
+        {errors.productPackage && <p className="text-sm text-red-500">{errors.productPackage}</p>}
+      </div>
+
+      <div className="flex justify-between gap-4">
+        <Button variant="outline" type="button" onClick={onBack}>
+          Back
+        </Button>
+        <Button
+          type="button"
+          onClick={handleNext}
+          className="bg-yellow-400 text-black hover:bg-yellow-500"
+        >
+          Next
+        </Button>
+      </div>
+    </div>
+  );
 }
 
 export default VehicleDetails;

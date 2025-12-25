@@ -1,3 +1,8 @@
+"use client";
+
+import { cn } from "@/lib/utils"; // shadcn helper for conditional classes
+import { Badge } from "@/components/ui/badge";
+
 interface StepperProps {
   step: number;
 }
@@ -13,22 +18,24 @@ export default function Stepper({ step }: StepperProps) {
 
         return (
           <div key={label} className="flex-1 flex flex-col items-center">
-            {/* Circle */}
-            <div
-              className={`w-10 h-10 flex items-center justify-center rounded-full border-2 
-                ${isActive ? "bg-yellow-400 border-yellow-400 text-black" : ""}
-                ${isCompleted ? "bg-green-500 border-green-500 text-white" : ""}
-                ${!isActive && !isCompleted ? "border-gray-300 text-gray-500" : ""}
-              `}
+            {/* Circle using Badge */}
+            <Badge
+              className={cn(
+                "w-10 h-10 flex items-center justify-center rounded-full border-2 text-base",
+                isActive && "bg-yellow-400 border-yellow-400 text-black",
+                isCompleted && "bg-green-500 border-green-500 text-white",
+                !isActive && !isCompleted && "border-gray-300 text-gray-500"
+              )}
             >
               {isCompleted ? "✓" : index + 1}
-            </div>
+            </Badge>
 
             {/* Label */}
             <p
-              className={`mt-2 text-sm font-medium 
-                ${isActive ? "text-yellow-500" : "text-gray-600"}
-              `}
+              className={cn(
+                "mt-2 text-sm font-medium",
+                isActive ? "text-yellow-500" : "text-gray-600"
+              )}
             >
               {label}
             </p>

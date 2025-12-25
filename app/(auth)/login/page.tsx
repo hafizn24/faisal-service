@@ -5,6 +5,16 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createBrowserClient } from "@supabase/ssr";
 
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -39,58 +49,55 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gray-200 text-gray-900 flex flex-col">
-      {/* Login Form Section */}
       <section className="flex flex-1 items-center justify-center py-12 px-6">
-        <form
-          onSubmit={handleLogin}
-          className="w-full max-w-md space-y-6 rounded-lg bg-white p-8 shadow-lg"
-        >
-          <h3 className="text-2xl font-bold text-center text-gray-800">
-            Sign In
-          </h3>
+        <Card className="w-full max-w-md shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-center">Sign In</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-6">
+              {error && (
+                <Alert variant="destructive">
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
 
-          {error && (
-            <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md">
-              {error}
-            </div>
-          )}
+              <Input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
 
-          <input
-            type="email"
-            placeholder="Email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          />
+              <Input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          />
+              <Button
+                type="submit"
+                className="w-full bg-black text-white hover:bg-gray-800"
+                disabled={loading}
+              >
+                {loading ? "Signing in..." : "Sign In"}
+              </Button>
 
-          <button
-            type="submit"
-            className="w-full px-6 py-3 bg-black text-white rounded-lg shadow hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
-            disabled={loading}
-          >
-            {loading ? "Signing in..." : "Sign In"}
-          </button>
-
-          <p className="text-center text-sm text-gray-600 mt-4">
-            Don’t have an account?{" "}
-            <Link
-              href="/register"
-              className="text-yellow-600 hover:text-yellow-700 font-medium"
-            >
-              Sign up
-            </Link>
-          </p>
-        </form>
+              <p className="text-center text-sm text-gray-600 mt-4">
+                Don’t have an account?{" "}
+                <Link
+                  href="/register"
+                  className="text-yellow-600 hover:text-yellow-700 font-medium"
+                >
+                  Sign up
+                </Link>
+              </p>
+            </form>
+          </CardContent>
+        </Card>
       </section>
     </div>
   );
