@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "header": "Executive Summary Review",
+    "type": "Proposal",
+    "status": "In Review",
+    "target": "80%",
+    "limit": "3",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 2,
+    "header": "Technical Approach Approval",
+    "type": "Technical",
+    "status": "Approved",
+    "target": "100%",
+    "limit": "5",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 3,
+    "header": "Design Review",
+    "type": "Design",
+    "status": "In Review",
+    "target": "60%",
+    "limit": "2",
+    "reviewer": "Maya Johnson"
+  },
+  {
+    "id": 4,
+    "header": "Security Assessment",
+    "type": "Security",
+    "status": "Approved",
+    "target": "100%",
+    "limit": "4",
+    "reviewer": "Priya Singh"
+  },
+  {
+    "id": 5,
+    "header": "Budget Review",
+    "type": "Financial",
+    "status": "In Review",
+    "target": "70%",
+    "limit": "3",
+    "reviewer": "Admin"
+  },
+  {
+    "id": 6,
+    "header": "Compliance Check",
+    "type": "Legal",
+    "status": "Pending",
+    "target": "40%",
+    "limit": "1",
+    "reviewer": "Sarah Johnson"
+  },
+  {
+    "id": 7,
+    "header": "API Documentation Review",
+    "type": "Technical",
+    "status": "Approved",
+    "target": "100%",
+    "limit": "4",
+    "reviewer": "David Kim"
+  },
+  {
+    "id": 8,
+    "header": "User Interface Approval",
+    "type": "Design",
+    "status": "In Review",
+    "target": "75%",
+    "limit": "2",
+    "reviewer": "Leila Ahmadi"
+  },
+  {
+    "id": 9,
+    "header": "Database Schema Review",
+    "type": "Technical",
+    "status": "Approved",
+    "target": "100%",
+    "limit": "3",
+    "reviewer": "Thomas Wilson"
+  },
+  {
+    "id": 10,
+    "header": "Testing Plan Approval",
+    "type": "QA",
+    "status": "In Review",
+    "target": "85%",
+    "limit": "3",
+    "reviewer": "Sarah Chen"
+  },
+  {
+    "id": 11,
+    "header": "Deployment Strategy Review",
+    "type": "Operations",
+    "status": "Approved",
+    "target": "100%",
+    "limit": "4",
+    "reviewer": "Alex Thompson"
+  },
+  {
+    "id": 12,
+    "header": "Documentation Review",
+    "type": "Technical",
+    "status": "In Review",
+    "target": "65%",
+    "limit": "2",
+    "reviewer": "Maria Garcia"
+  },
+  {
+    "id": 13,
+    "header": "Performance Metrics Approval",
+    "type": "Technical",
+    "status": "Approved",
+    "target": "100%",
+    "limit": "3",
+    "reviewer": "David Kim"
+  },
+  {
+    "id": 14,
+    "header": "Disaster Recovery Plan",
+    "type": "Operations",
+    "status": "In Review",
+    "target": "80%",
+    "limit": "3",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 15,
+    "header": "Integration Testing Results",
+    "type": "QA",
+    "status": "Approved",
+    "target": "100%",
+    "limit": "5",
+    "reviewer": "Sarah Chen"
+  },
+  {
+    "id": 16,
+    "header": "Code Review Completion",
+    "type": "Technical",
+    "status": "In Review",
+    "target": "90%",
+    "limit": "4",
+    "reviewer": "Carlos Rodriguez"
+  },
+  {
+    "id": 17,
+    "header": "Release Notes Approval",
+    "type": "Documentation",
+    "status": "Approved",
+    "target": "100%",
+    "limit": "3",
+    "reviewer": "Maria Garcia"
+  },
+  {
+    "id": 18,
+    "header": "Client Feedback Review",
+    "type": "Business",
+    "status": "In Review",
+    "target": "70%",
+    "limit": "2",
+    "reviewer": "Emma Davis"
+  },
+  {
+    "id": 19,
+    "header": "Final Sign-off",
+    "type": "Executive",
+    "status": "Pending",
+    "target": "50%",
+    "limit": "1",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 20,
+    "header": "Handover Documentation",
+    "type": "Operations",
+    "status": "In Review",
+    "target": "75%",
+    "limit": "2",
+    "reviewer": "Jamik Tashpulatov"
+  }
+]

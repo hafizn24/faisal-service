@@ -66,9 +66,6 @@ export default function UserForm() {
         receiptBase64 = await fileToBase64(formData.receipt);
       }
 
-      console.log('payload', formData)
-      console.log('receipt', receiptBase64)
-
       const payload = {
         name: formData.name,
         email: formData.email,
