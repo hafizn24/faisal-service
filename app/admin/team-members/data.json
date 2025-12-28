@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "header": "Eddie Lake",
+    "type": "Senior Manager",
+    "status": "Active",
+    "target": "100%",
+    "limit": "10",
+    "reviewer": "Admin"
+  },
+  {
+    "id": 2,
+    "header": "Jamik Tashpulatov",
+    "type": "Project Lead",
+    "status": "Active",
+    "target": "95%",
+    "limit": "8",
+    "reviewer": "Admin"
+  },
+  {
+    "id": 3,
+    "header": "Maya Johnson",
+    "type": "Developer",
+    "status": "Active",
+    "target": "90%",
+    "limit": "5",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 4,
+    "header": "Carlos Rodriguez",
+    "type": "Developer",
+    "status": "Active",
+    "target": "88%",
+    "limit": "5",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 5,
+    "header": "Sarah Chen",
+    "type": "QA Engineer",
+    "status": "Active",
+    "target": "92%",
+    "limit": "6",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 6,
+    "header": "Raj Patel",
+    "type": "Backend Developer",
+    "status": "Active",
+    "target": "93%",
+    "limit": "7",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 7,
+    "header": "Leila Ahmadi",
+    "type": "UI/UX Designer",
+    "status": "Active",
+    "target": "89%",
+    "limit": "4",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 8,
+    "header": "Thomas Wilson",
+    "type": "Database Administrator",
+    "status": "On Leave",
+    "target": "0%",
+    "limit": "0",
+    "reviewer": "Admin"
+  },
+  {
+    "id": 9,
+    "header": "Sophia Martinez",
+    "type": "Business Analyst",
+    "status": "Active",
+    "target": "91%",
+    "limit": "5",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 10,
+    "header": "Alex Thompson",
+    "type": "DevOps Engineer",
+    "status": "Active",
+    "target": "94%",
+    "limit": "6",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 11,
+    "header": "Nina Patel",
+    "type": "Data Analyst",
+    "status": "Active",
+    "target": "87%",
+    "limit": "4",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 12,
+    "header": "David Kim",
+    "type": "Frontend Developer",
+    "status": "Active",
+    "target": "90%",
+    "limit": "5",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 13,
+    "header": "Maria Garcia",
+    "type": "Technical Writer",
+    "status": "Active",
+    "target": "85%",
+    "limit": "3",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 14,
+    "header": "James Wilson",
+    "type": "Mobile Developer",
+    "status": "Active",
+    "target": "92%",
+    "limit": "6",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 15,
+    "header": "Priya Singh",
+    "type": "Security Specialist",
+    "status": "Active",
+    "target": "96%",
+    "limit": "8",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 16,
+    "header": "Michael Chen",
+    "type": "Release Manager",
+    "status": "Active",
+    "target": "93%",
+    "limit": "7",
+    "reviewer": "Jamik Tashpulatov"
+  },
+  {
+    "id": 17,
+    "header": "Lisa Wong",
+    "type": "Network Administrator",
+    "status": "Active",
+    "target": "91%",
+    "limit": "5",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 18,
+    "header": "Emma Davis",
+    "type": "Product Manager",
+    "status": "Active",
+    "target": "94%",
+    "limit": "6",
+    "reviewer": "Admin"
+  },
+  {
+    "id": 19,
+    "header": "Daniel Park",
+    "type": "Solutions Architect",
+    "status": "Active",
+    "target": "95%",
+    "limit": "7",
+    "reviewer": "Eddie Lake"
+  },
+  {
+    "id": 20,
+    "header": "Sarah Johnson",
+    "type": "Legal Advisor",
+    "status": "Active",
+    "target": "88%",
+    "limit": "4",
+    "reviewer": "Admin"
+  }
+]
