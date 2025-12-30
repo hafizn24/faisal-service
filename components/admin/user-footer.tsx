@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/auth"
-import { NavUser } from "@/components/nav-user"
+import { NavUser } from "@/components/admin/nav-user"
 
 export async function UserFooter() {
   const user = await getCurrentUser()

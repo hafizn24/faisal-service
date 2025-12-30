@@ -1,6 +1,6 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { UserFooter, UserSkeleton } from "@/components/user-footer"
-import { SiteHeader } from "@/components/site-header"
+import { AppSidebar } from "@/components/admin/app-sidebar"
+import { UserFooter, UserSkeleton } from "@/components/admin/user-footer"
+import { SiteHeader } from "@/components/admin/site-header"
 import {
   SidebarInset,
   SidebarProvider,

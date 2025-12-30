@@ -8,7 +8,7 @@ import {
   IconFileTime,
 } from "@tabler/icons-react"
 
-import { NavMain } from "@/components/nav-main"
+import { NavMain } from "@/components/admin/nav-main"
 import {
   Sidebar,
   SidebarContent,

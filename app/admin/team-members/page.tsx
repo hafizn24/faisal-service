@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { createBrowserClient } from "@supabase/ssr"
-import { GenericDataTable } from "@/components/generic-data-table"
+import { GenericDataTable } from "@/components/admin/generic-data-table"
 
 export default function TeamMembersPage() {
   const [data, setData] = useState<any[]>([])

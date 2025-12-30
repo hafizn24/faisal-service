@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { createBrowserClient } from "@supabase/ssr"
-import { GenericDataTable } from "@/components/generic-data-table"
+import { GenericDataTable } from "@/components/admin/generic-data-table"
 import { createApprovalColumnConfig, ApprovalUser } from "./approval-config"
 
 export default function ApprovalPage() {

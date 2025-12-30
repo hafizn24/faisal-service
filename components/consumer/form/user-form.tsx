@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react";
-import UserDetails from "./_components/UserDetails";
-import AppointmentDetails from "./_components/AppointmentDetails";
-import VehicleDetails from "./_components/VehicleDetails";
-import Stepper from "../Stepper";
+import UserDetails from "./_components/user-details";
+import AppointmentDetails from "./_components/appoiment-details";
+import VehicleDetails from "./_components/vehicle-details";
+import Stepper from "../stepper";
 
 import {
   Card,
