@@ -115,28 +115,28 @@ export default function OrdersPage() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 px-4 lg:px-6">
+          <TabsList className="inline-flex h-10 items-center justify-start rounded-md bg-muted p-1 text-muted-foreground mx-4 lg:mx-6">
             <TabsTrigger value="all-orders" className="relative">
               All Orders
-              <Badge variant="outline" className="ml-2 rounded-full">
+              <Badge variant="outline" className="ml-2 rounded-full h-5 min-w-[1.25rem] px-1">
                 {allOrders.length}
               </Badge>
             </TabsTrigger>
             <TabsTrigger value="payment-pending" className="relative">
               Pending Payments
-              <Badge variant="outline" className="ml-2 rounded-full">
+              <Badge variant="outline" className="ml-2 rounded-full h-5 min-w-[1.25rem] px-1">
                 {pendingPaymentOrders.length}
               </Badge>
             </TabsTrigger>
             <TabsTrigger value="work-pending" className="relative">
               Pending Work
-              <Badge variant="outline" className="ml-2 rounded-full">
+              <Badge variant="outline" className="ml-2 rounded-full h-5 min-w-[1.25rem] px-1">
                 {pendingWorkOrders.length}
               </Badge>
             </TabsTrigger>
             <TabsTrigger value="work-completed" className="relative">
               Completed Work
-              <Badge variant="outline" className="ml-2 rounded-full">
+              <Badge variant="outline" className="ml-2 rounded-full h-5 min-w-[1.25rem] px-1">
                 {completedWorkOrders.length}
               </Badge>
             </TabsTrigger>

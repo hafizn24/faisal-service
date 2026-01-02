@@ -96,12 +96,14 @@ interface GenericDataTableProps<T extends DataRecord> {
 }
 
 interface ColumnConfig<T> {
-  header?: string
+  header?: string | ((props: any) => React.ReactNode)
   cell?: (value: any, row: T) => React.ReactNode
   editable?: boolean
   type?: "text" | "number" | "boolean" | "select" | "badge" | "status"
   options?: string[]
   hidden?: boolean
+  enableSorting?: boolean
+  sortingFn?: string
 }
 
 // Drag Handle Component
